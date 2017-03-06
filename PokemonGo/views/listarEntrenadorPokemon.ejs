@@ -1,0 +1,42 @@
+<h1>Entrenadores Pokemon</h1>
+<p>Bienvenidos al Pueblo Paleta, a continuacion se listaran los entrenadores Pokemon</p>
+
+
+<% for(var i=0; i<entrenadores.length; i++) {%>
+
+    <div class="row ma-margen-top-bottom">
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-4">
+
+            <div class="text-center ma-borde ma-padding-top-bottom">
+                <h1> <%= entrenadores[i].nombre %></h1>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-5 text-center">
+            <div class="text-center ma-borde" style="margin-top: 40px;">
+                <p>
+                    <%= entrenadores[i].id %>
+                       <%= entrenadores[i].nombre %>
+                        <%= entrenadores[i].region %>
+                </p>
+                <p>
+                    <%= entrenadores[i].fechaInicioMaestroPokemon %>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-sm-1">
+            <a href="/Entrenador/BorrarEntrenador?id=<%= entrenadores[i].id %>" class="btn btn-danger btn-block">X</a>
+            <a href="/EditarEntrenador?id=<%= entrenadores[i].id %>" class="btn btn-info btn-block">Edit</a>
+            
+        </div>
+    </div>
+
+    <% }%>
