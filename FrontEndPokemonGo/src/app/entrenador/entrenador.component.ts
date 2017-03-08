@@ -12,6 +12,7 @@ export class EntrenadorComponent implements OnInit {
   private _parametros: any;
   entrenadores=[];
   nuevoEntrenador={};
+  regionSelecionada="";
 
 
   constructor(private _ActivedRoute: ActivatedRoute,private _http:Http,private _masterURL:MasterUrlService) { }
@@ -22,7 +23,7 @@ export class EntrenadorComponent implements OnInit {
 
   }
 
-
+  
 
   crearEntrenador(formulario: NgForm) {
 
@@ -34,7 +35,7 @@ export class EntrenadorComponent implements OnInit {
 
     }).subscribe(
       (res) => {
-
+        console.log(formulario.value.region);
         this.entrenadores.push(res.json());
         this.entrenadores[this.entrenadores.length-1].formularioCerrado=true;
         this.nuevoEntrenador = {};
