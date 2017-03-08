@@ -1,3 +1,94 @@
 <p>
   pokemon works!
 </p>
+<div style='background-color:#0e6471;color:black;'>
+
+  <h1>Crear Pokemon</h1>
+  <p>¡Registre sus nuevos Pokemon!</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <form class="animated bounceIn" (ngSubmit)="crearPokemon(NuevoPokemonForm)" #NuevoPokemonForm="ngForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre del Pokemon</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Nombre del Maestro" name="nombre"
+                   [(ngModel)]="nuevoPokemon.nombre">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tipo del Pokemon 1</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Region del Maestro" name="tipoPokemon1"
+                   [(ngModel)]="nuevoPokemon.tipoPokemon1">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tipo del Pokemon 2</label>
+            <input minlength=5 required type="text" class="form-control" name="tipoPokemon2"
+                   [(ngModel)]="nuevoPokemon.tipoPokemon2">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Id del entrenador</label>
+            <input  type="text" class="form-control" name="idPokemon"
+                   [(ngModel)]="nuevoPokemon.idPokemon">
+          </div>
+
+          <button type="submit" class="btn btn-success">Crear pokemon</button>
+          <br>
+
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <h1>{{nuevoPokemon.nombre}}</h1>
+
+      </div>
+    </div>
+    <h1>Listar Pokemones</h1>
+    <p>Revise, edite y borre a los Pokemones registrados</p>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let pokemon of pokemones">
+        <h3 class="text-center"> ID: {{pokemon.id}} - {{pokemon.nombre}}</h3>
+
+
+        <div [hidden]="!pokemon.formularioCerrado">
+          <button class="btn btn-block btn-danger" (click)="borrarPokemon(pokemon.id)"> Borrar</button>
+
+          <br>
+
+          <button class="btn btn-block btn-success"
+                  (click)="pokemon.formularioCerrado=!pokemon.formularioCerrado"> Editar
+          </button>
+        </div>
+        <div [hidden]="pokemon.formularioCerrado">
+          <form class="animated bounceIn" (ngSubmit)="editarPokemon(pokemon)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre del pokemon</label>
+              <input minlength=5 required type="text" class="form-control" placeholder="Nombre del pokemon"
+                     name="nombre" [(ngModel)]="pokemon.nombre">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tipo del pokemon</label>
+              <input minlength=3 required type="text" class="form-control" placeholder="Nombre del pokemon"
+                     name="region" [(ngModel)]="pokemon.tipoPokemon1">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tipo del pokemon 2</label>
+              <input minlength=3 required type="text" class="form-control" placeholder="Nombre del pokemon" name="fechaInicioMaestroPokemon" [(ngModel)]="pokemon.tipoPokemon2">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Id del Entrenador</label>
+              <input type="text" class="form-control" placeholder="Nombre del pokemon" name="idPokemon" [(ngModel)]="pokemon.idPokemon">
+            </div>
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <br>
+            <button type="button" class="btn btn-warning"
+                    (click)="pokemon.formularioCerrado=!pokemon.formularioCerrado">Cancelar</button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>

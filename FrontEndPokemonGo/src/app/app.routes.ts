@@ -1,5 +1,7 @@
 import {Routes, RouterModule} from "@angular/router";
 import {InicioComponent} from "./inicio/inicio.component";
+import {EntrenadorComponent} from "./entrenador/entrenador.component";
+import {PokemonComponent} from "./pokemon/pokemon.component";
 import {MinisterioComponent} from "./ministerio/ministerio.component";
 import {CreyenteComponent} from "./creyente/creyente.component";
 import {ReunionJovenesComponent} from "./reunion-jovenes/reunion-jovenes.component";
@@ -12,6 +14,8 @@ import {ModuleWithProviders} from "@angular/core";
 
 export const routes:Routes=[
   {path: 'inicio', component:InicioComponent},
+  {path: 'entrenador', component: EntrenadorComponent},
+  {path: 'pokemon', component: PokemonComponent},
   {path: 'ministerio', component: MinisterioComponent},
   {path: 'creyente', component: CreyenteComponent},
   {path: 'reunionJovenes', component: ReunionJovenesComponent},
