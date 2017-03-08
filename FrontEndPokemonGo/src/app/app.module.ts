@@ -15,6 +15,8 @@ import { ReunionJovenesComponent } from './reunion-jovenes/reunion-jovenes.compo
 import { SirveEnComponent } from './sirve-en/sirve-en.component';
 import {routing} from "./app.routes";
 import {MasterUrlService} from "./services/master-url.service";
+import { PokemonComponent } from './pokemon/pokemon.component';
+import { EntrenadorComponent } from './entrenador/entrenador.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {MasterUrlService} from "./services/master-url.service";
     MinisterioComponent,
     PredicaTextoComponent,
     ReunionJovenesComponent,
-    SirveEnComponent
+    SirveEnComponent,
+    PokemonComponent,
+    EntrenadorComponent
   ],
   imports: [
     BrowserModule,

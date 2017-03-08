@@ -1,0 +1,87 @@
+<p>
+  entrenador works!
+</p>
+
+<div style='background-color:#0e6471;color:black;'>
+
+  <h1>Crear Entrenador</h1>
+  <p>¡Registrese COmo nuevo Maestro Pokemon!</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <form class="animated bounceIn" (ngSubmit)="crearEntrenador(NuevoEntrenadorForm)" #NuevoEntrenadorForm="ngForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre del Entrenador</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Nombre del Maestro" name="nombre"
+                   [(ngModel)]="nuevoEntrenador.nombre">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Region</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Region del Maestro" name="region"
+                   [(ngModel)]="nuevoEntrenador.region">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Fecha de Inicio Maestro Pokemon</label>
+            <input minlength=5 required type="date" class="form-control" name="fechaInicioMaestroPokemon"
+                   [(ngModel)]="nuevoEntrenador.fechaInicioMaestroPokemon">
+          </div>
+
+          <button type="submit" class="btn btn-success">Crear entrenador</button>
+          <br>
+
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <h1>{{nuevoEntrenador.nombre}}</h1>
+
+      </div>
+    </div>
+    <h1>Listar Maestros Pokemon</h1>
+    <p>Revise, edite y borre a los Maestros registrados</p>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let entrenador of entrenadores">
+        <h3 class="text-center"> ID: {{entrenador.id}} - {{entrenador.nombre}}</h3>
+
+
+        <div [hidden]="!entrenador.formularioCerrado">
+          <button class="btn btn-block btn-danger" (click)="borrarEntrenador(entrenador.id)"> Borrar</button>
+
+          <br>
+
+          <button class="btn btn-block btn-success"
+                  (click)="entrenador.formularioCerrado=!entrenador.formularioCerrado"> Editar
+          </button>
+        </div>
+        <div [hidden]="entrenador.formularioCerrado">
+          <form class="animated bounceIn" (ngSubmit)="editarEntrenador(entrenador)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre del entrenador</label>
+              <input minlength=5 required type="text" class="form-control" placeholder="Nombre del entrenador"
+                     name="nombre" [(ngModel)]="entrenador.nombre">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Region del entrenador</label>
+              <input minlength=3 required type="text" class="form-control" placeholder="Nombre del entrenador"
+                     name="region" [(ngModel)]="entrenador.region">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Fecha de inicio entrenador</label>
+              <input minlength=3 required type="date" class="form-control" placeholder="Nombre del entrenador" name="fechaInicioMaestroPokemon" [(ngModel)]="entrenador.fechaInicioMaestroPokemon">
+            </div>
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <br>
+            <button type="button" class="btn btn-warning"
+                    (click)="entrenador.formularioCerrado=!entrenador.formularioCerrado">Cancelar
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>
