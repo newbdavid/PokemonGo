@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span>MENU</span>
+      </button>
+      <a class="navbar-brand" href="#">Jovenes CDFE</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li><a [routerLink]="['/ministerio']">Ministerios</a></li>
+        <li><a [routerLink]="['/creyente']">Creyente</a></li>
+        <li><a [routerLink]="['/reunionJovenes']">ReunionJovenes</a></li>
+        <li><a [routerLink]="['/reunionJovenes','1','fotoReunion']">FotoReunion</a></li>
+        <li><a [routerLink]="['/reunionJovenes','1','audioPodcast']">AudioPodcast</a></li>
+        <li><a [routerLink]="['/reunionJovenes','1','predicaTexto']">Predica</a></li>
+        <li><a [routerLink]="['/creyente','1','celula']">Celula</a></li>
+        <li><a [routerLink]="['/creyente','1','sirveEn']">SirveEn</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">Desarrollado por Alex Freire y David Moncayo</span>
+  </div>
+</footer>

@@ -1,0 +1,65 @@
+<div style='background-color:white;color:black;'>
+
+  <h1>Crear PredicaTextos</h1>
+  <p>¡Registrate tus agarrres en la aplicación!</p>
+  <p>¡Nota: Ingresar el id del usuario directamente sobre url para visualizar los predicaTextos por usuario</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <form class="animated bounceIn" (ngSubmit)="crearPredicaTexto(NuevoPredicaTextoForm)" #NuevoPredicaTextoForm="ngForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre del archivo pdf</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Nombre del archivo pdf" name="archivoPdf" [(ngModel)]="nuevoPredicaTexto.archivoPdf">
+
+          </div>
+
+
+          <button type="submit" class="btn btn-success">Crear PredicaTexto</button>
+          <br>
+
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <h1>{{nuevoPredicaTexto.archivoPdf}}</h1>
+
+      </div>
+    </div>
+    <h1>Listar PredicaTextos</h1>
+    <p>Revise, edite y borre a los predicaTextos registrados</p>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let predicaTexto of predicaTextos">
+        <h3 class="text-center"> ID: {{predicaTexto.id}}</h3>
+        <h3 class="text-center"> archivoPdf:  {{predicaTexto.archivoPdf}}</h3>
+
+
+        <div [hidden]="!predicaTexto.formularioCerrado">
+          <button class="btn btn-block btn-danger" (click)="borrarPredicaTexto(predicaTexto.id)"> Borrar</button>
+
+          <br>
+
+          <button class="btn btn-block btn-success" (click)="predicaTexto.formularioCerrado=!predicaTexto.formularioCerrado"> Editar</button>
+        </div>
+        <div [hidden]="predicaTexto.formularioCerrado">
+          <form class="animated bounceIn" (ngSubmit)="editarPredicaTexto(predicaTexto)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre del archivo pdf</label>
+              <input minlength=5 required type="text" class="form-control" placeholder="Nombre del archivo pdf" name="archivoPdf" [(ngModel)]="predicaTexto.archivoPdf">
+            </div>
+
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <br>
+            <button type="button" class="btn btn-warning" (click)="predicaTexto.formularioCerrado=!predicaTexto.formularioCerrado">Cancelar</button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+</div>

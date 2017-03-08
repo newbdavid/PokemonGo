@@ -1,0 +1,64 @@
+<div style='background-color:white;color:black;'>
+
+  <h1>Crear Reunion de Jovenes</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <form class="animated bounceIn" (ngSubmit)="crearReunionJovenes(NuevaReunionJovenesForm)" #NuevaReunionJovenesForm="ngForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Tema de Reunion</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Nombre del tema de la reunion" name="tema_Reunion" [(ngModel)]="nuevaReunionJovenes.tema_Reunion">
+
+          </div>
+
+
+          <button type="submit" class="btn btn-success">Crear Reunion Reunion</button>
+          <br>
+
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <h1>{{nuevaReunionJovenes.tema_Reunion}}</h1>
+
+      </div>
+    </div>
+    <h1>Listar Reuniones</h1>
+    <p>Revise, edite y borre a las Reuniones de Jovenes registrados</p>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let reunionJovenes of reunionesJovenes">
+        <h3 class="text-center"> ID: {{reunionJovenes.id}}</h3>
+        <h3 class="text-center"> Tema de la Reunion:  {{reunionJovenes.tema_Reunion}}</h3>
+
+
+        <div [hidden]="!reunionJovenes.formularioCerrado">
+          <button class="btn btn-block btn-danger" (click)="borrarReunionJovenes(reunionJovenes.id)"> Borrar</button>
+
+          <br>
+
+          <button class="btn btn-block btn-success" (click)="reunionJovenes.formularioCerrado=!reunionJovenes.formularioCerrado"> Editar</button>
+        </div>
+        <div [hidden]="reunionJovenes.formularioCerrado">
+          <form class="animated bounceIn" (ngSubmit)="editarReunionJovenes(reunionJovenes)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tema de la Reunion</label>
+              <input minlength=5 required type="text" class="form-control" placeholder="Nombre del archivo pdf" name="tema_Reunion" [(ngModel)]="reunionJovenes.tema_Reunion">
+            </div>
+
+
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <br>
+            <button type="button" class="btn btn-warning" (click)="reunionJovenes.formularioCerrado=!reunionJovenes.formularioCerrado">Cancelar</button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+</div>

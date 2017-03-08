@@ -1,0 +1,101 @@
+<h1>Creyente</h1>
+
+<div class="col-sm-6">
+  <form (ngSubmit)="crearCreyente(NuevoCreyenteForm)" #NuevoCreyenteForm="ngForm">
+    <div class="container">
+      <div class="form-group">
+        <label>Celula a la que pertenece</label>
+        <input type="text"
+               class="form-control"
+               name="idCelula"
+               [(ngModel)]="nuevoCreyente.idCelula"
+        >
+      </div>
+      <div class="form-group">
+        <label>Nombres Creyente</label>
+        <input type="text"
+               class="form-control"
+               name="nombres_Creyente"
+               [(ngModel)]="nuevoCreyente.nombres_Creyente"
+        >
+      </div>
+      <div class="form-group">
+        <label>Telefono Celular</label>
+        <input type="text"
+               class="form-control"
+               name="telefono_Celular"
+               [(ngModel)]="nuevoCreyente.telefono_Celular"
+        >
+      </div>
+      <div class="form-group">
+        <label>Telefono Fijo</label>
+        <input type="text"
+               class="form-control"
+               name="telefono_fijo"
+               [(ngModel)]="nuevoCreyente.telefono_fijo"
+        >
+      </div>
+      <div class="form-group">
+        <label>Sector Vivienda</label>
+        <input type="text"
+               class="form-control"
+               name="sector_Vivienda"
+               [(ngModel)]="nuevoCreyente.sector_Vivienda"
+        >
+      </div>
+      <div class="form-group">
+        <label>Fecha Nacimiento</label>
+        <input type="date"
+               class="form-control"
+               name="fecha_Nacimiento"
+               [(ngModel)]="nuevoCreyente.fecha_Nacimiento"
+        >
+      </div>
+      <div class="form-group">
+        <label>Lidera Celula</label>
+        <input type="checkbox"
+               class="form-control"
+               name="lidera_Celula"
+               [(ngModel)]="nuevoCreyente.lidera_Celula"
+        >
+      </div>
+      <button class="btn btn-block btn-success" type="submit">Registrar Creyente</button>
+    </div>
+  </form>
+</div>
+
+
+<h1>Listar Creyentes</h1>
+<p>Revise, edite y borre a los y las Creyentes registrados</p>
+<div class="row">
+  <div class="col-sm-4" *ngFor="let creyente of Creyentes">
+    <h3 class="text-center"> ID: {{creyente.id}}</h3>
+    <h3 class="text-center"> Nombres Creyente:  {{creyente.nombres_Creyente}}</h3>
+
+
+    <div [hidden]="!creyente.formularioCerrado">
+      <button class="btn btn-block btn-danger" (click)="borrarCreyente(creyente.id)"> Borrar</button>
+
+      <br>
+
+      <button class="btn btn-block btn-success" (click)="creyente.formularioCerrado=!creyente.formularioCerrado"> Editar</button>
+    </div>
+    <div [hidden]="creyente.formularioCerrado">
+      <form class="animated bounceIn" (ngSubmit)="editarCreyente(creyente)">
+        <div class="form-group">
+          <label >Nombre del Creyente</label>
+          <input minlength=5 required type="text" class="form-control" placeholder="Nombre del archivo pdf" name="nombres_Creyente" [(ngModel)]="creyente.nombres_Creyente">
+        </div>
+
+        <button type="submit" class="btn btn-success">Aceptar</button>
+        <br>
+        <button type="button" class="btn btn-warning" (click)="creyente.formularioCerrado=!creyente.formularioCerrado">Cancelar</button>
+
+      </form>
+    </div>
+
+  </div>
+
+
+
+</div>

@@ -1,0 +1,72 @@
+<div style='background-color:white;color:black;'>
+
+  <h1>Crear Foto de la Reunion</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <form class="animated bounceIn" (ngSubmit)="crearFotoReunion(NuevaFotoReunionForm)" #NuevaFotoReunionForm="ngForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">id Reunion de Jovenes</label>
+            <input type="text" class="form-control" placeholder="Nombre del archivo de foto" name="idReunionJovenes" [(ngModel)]="nuevaFotoReunion.idReunionJovenes">
+
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Archivo foto</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Nombre del archivo de foto" name="archivo_Foto" [(ngModel)]="nuevaFotoReunion.archivo_Foto">
+
+          </div>
+
+
+          <button type="submit" class="btn btn-success">Crear Foto Reunion</button>
+          <br>
+
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <h1>{{nuevaFotoReunion.archivo_Foto}}</h1>
+
+      </div>
+    </div>
+    <h1>Listar Fotos</h1>
+    <p>Revise, edite y borre a los Fotos de las Reuniones registrados</p>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let fotoReunion of fotosReunion">
+        <h3 class="text-center"> ID: {{fotoReunion.id}}</h3>
+        <h3 class="text-center"> Foto de la Reunion:  {{fotoReunion.archivo_Foto}}</h3>
+
+
+        <div [hidden]="!fotoReunion.formularioCerrado">
+          <button class="btn btn-block btn-danger" (click)="borrarFotoReunion(fotoReunion.id)"> Borrar</button>
+
+          <br>
+
+          <button class="btn btn-block btn-success" (click)="fotoReunion.formularioCerrado=!fotoReunion.formularioCerrado"> Editar</button>
+        </div>
+        <div [hidden]="fotoReunion.formularioCerrado">
+          <form class="animated bounceIn" (ngSubmit)="editarFotoReunion(fotoReunion)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Id de la Reunion</label>
+              <input  type="text" class="form-control" placeholder="Nombre del archivo pdf" name="idReunionJovenes" [(ngModel)]="fotoReunion.idReunionJovenes">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Archivo Foto</label>
+              <input minlength=5 required type="text" class="form-control" placeholder="Nombre del archivo pdf" name="archivo_Foto" [(ngModel)]="fotoReunion.archivo_Foto">
+            </div>
+
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <br>
+            <button type="button" class="btn btn-warning" (click)="fotoReunion.formularioCerrado=!fotoReunion.formularioCerrado">Cancelar</button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+</div>

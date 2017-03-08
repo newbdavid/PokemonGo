@@ -1,0 +1,62 @@
+<div style='background-color:white;color:black;'>
+
+  <h1>Crear Ministerios</h1>
+  <p>¡Registre su Ministerio!</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <form class="animated bounceIn" (ngSubmit)="crearMinisterio(NuevoMinisterioForm)" #NuevoMinisterioForm="ngForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre del ministerio</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Nombre del Ministerio" name="nombreMinisterio" [(ngModel)]="nuevoMinisterio.nombreMinisterio">
+          </div>
+
+          <button type="submit" class="btn btn-success">Crear Ministerio</button>
+          <br>
+
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <h1>{{nuevoMinisterio.nombreMinisterio}}</h1>
+
+      </div>
+    </div>
+    <h1>Listar Ministerios</h1>
+    <p>Revise, edite y borre a los ministerios registrados</p>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let ministerio of ministerios">
+        <h3 class="text-center"> ID: {{ministerio.id}} -  {{ministerio.nombreMinisterio}}</h3>
+
+
+        <div [hidden]="!ministerio.formularioCerrado">
+          <button class="btn btn-block btn-danger" (click)="borrarMinisterio(ministerio.id)"> Borrar</button>
+
+          <br>
+
+          <button class="btn btn-block btn-success" (click)="ministerio.formularioCerrado=!ministerio.formularioCerrado"> Editar</button>
+        </div>
+        <div [hidden]="ministerio.formularioCerrado">
+          <form class="animated bounceIn" (ngSubmit)="editarMinisterio(ministerio)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre del Ministerio</label>
+              <input minlength=5 required type="text" class="form-control" placeholder="Nombre del Ministerio" name="nombreMinisterio" [(ngModel)]="ministerio.nombreMinisterio">
+            </div>
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <br>
+            <button type="button" class="btn btn-warning" (click)="ministerio.formularioCerrado=!ministerio.formularioCerrado">Cancelar</button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+</div>
+
+

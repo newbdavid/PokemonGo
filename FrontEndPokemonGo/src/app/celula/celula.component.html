@@ -1,0 +1,99 @@
+<h1>Celula</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <form (ngSubmit)="crearCelula(NuevaCelulaForm)" #NuevaCelulaForm="ngForm">
+        <div class="container">
+          <div class="form-group">
+            <label>Sector Celula</label>
+            <input type="text"
+                   class="form-control"
+                   name="sector_Celula"
+                   [(ngModel)]="nuevaCelula.sector_Celula"
+            >
+          </div>
+          <div class="form-group">
+            <label>Edad minima</label>
+            <input type="text"
+                   class="form-control"
+                   name="edad_Minima"
+                   [(ngModel)]="nuevaCelula.edad_Minima"
+            >
+          </div>
+          <div class="form-group">
+            <label>Edad Maxima</label>
+            <input type="text"
+                   class="form-control"
+                   name="edad_Maxima"
+                   [(ngModel)]="nuevaCelula.edad_Maxima"
+            >
+          </div>
+          <div class="form-group">
+            <label>Id Lider</label>
+            <input type="text"
+                   class="form-control"
+                   name="id_Lider"
+                   [(ngModel)]="nuevaCelula.id_Lider"
+            >
+          </div>
+          <button class="btn btn-block btn-success" type="submit">Crear Producto</button>
+        </div>
+      </form>
+    </div>
+
+
+    <h1>Listar Celulas</h1>
+    <p>Revise, edite y borre a las Celulas registrados</p>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let celula of Celulas">
+        <h3 class="text-center"> ID: {{celula.id}}</h3>
+        <h3 class="text-center"> Sector: {{celula.sector_Celula}}</h3>
+
+
+        <div [hidden]="!celula.formularioCerrado">
+          <button class="btn btn-block btn-danger" (click)="borrarCelula(celula.id)"> Borrar</button>
+
+          <br>
+
+          <button class="btn btn-block btn-success" (click)="celula.formularioCerrado=!celula.formularioCerrado"> Editar
+          </button>
+        </div>
+        <div [hidden]="celula.formularioCerrado">
+          <form class="animated bounceIn" (ngSubmit)="editarCelula(celula)">
+            <div class="form-group">
+              <label>Sector de la Celula</label>
+              <input minlength=5 required type="text" class="form-control" placeholder="Nombre del archivo pdf"
+                     name="sector_Celula" [(ngModel)]="celula.sector_Celula">
+            </div>
+            <div class="form-group">
+              <label>Edad Minima</label>
+              <input required type="text" class="form-control" placeholder="Nombre del archivo pdf" name="sector_Celula"
+                     [(ngModel)]="celula.edad_Minima">
+            </div>
+            <div class="form-group">
+              <label>Edad Maxima</label>
+              <input required type="text" class="form-control" placeholder="Nombre del archivo pdf" name="sector_Celula"
+                     [(ngModel)]="celula.edad_Maxima">
+            </div>
+            <div class="form-group">
+              <label>Id Lider de Celula</label>
+              <input type="text" class="form-control" placeholder="Nombre del archivo pdf" name="sector_Celula"
+                     [(ngModel)]="celula.id_Lider">
+            </div>
+
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <br>
+            <button type="button" class="btn btn-warning" (click)="celula.formularioCerrado=!celula.formularioCerrado">
+              Cancelar
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

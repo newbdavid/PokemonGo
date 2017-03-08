@@ -1,0 +1,64 @@
+<div style='background-color:white;color:black;'>
+
+  <h1>Crear AudioPodcasts</h1>
+  <p>¡Registre sus archivos de audio!</p>
+  <p>¡Nota: Ingresar el id del usuario directamente sobre url para visualizar los audioPodcasts por usuario</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <form class="animated bounceIn" (ngSubmit)="crearAudioPodcast(NuevoAudioPodcastForm)" #NuevoAudioPodcastForm="ngForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre de archivo mp3</label>
+            <input minlength=5 required type="text" class="form-control" placeholder="Nombre archivo mp3" name="archivoMp3" [(ngModel)]="nuevoAudioPodcast.archivoMp3">
+          </div>
+
+
+          <button type="submit" class="btn btn-success">Crear AudioPodcast</button>
+          <br>
+
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <h1>{{nuevoAudioPodcast.archivoMp3}}</h1>
+
+      </div>
+    </div>
+    <h1>Listar AudioPodcasts</h1>
+    <p>Revise, edite y borre a los audioPodcasts registrados</p>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let audioPodcast of audioPodcasts">
+        <h3 class="text-center"> ID: {{audioPodcast.id}} </h3>
+        <h3 class="text-center"> Archivo mp3:  {{audioPodcast.archivoMp3}}</h3>
+
+
+        <div [hidden]="!audioPodcast.formularioCerrado">
+          <button class="btn btn-block btn-danger" (click)="borrarAudioPodcast(audioPodcast.id)"> Borrar</button>
+
+          <br>
+
+          <button class="btn btn-block btn-success" (click)="audioPodcast.formularioCerrado=!audioPodcast.formularioCerrado"> Editar</button>
+        </div>
+        <div [hidden]="audioPodcast.formularioCerrado">
+          <form class="animated bounceIn" (ngSubmit)="editarAudioPodcast(audioPodcast)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre de archivo mp3</label>
+              <input minlength=5 required type="text" class="form-control" placeholder="Nombre archivo mp3" name="archivoMp3" [(ngModel)]="audioPodcast.archivoMp3">
+            </div>
+
+            <button type="submit" class="btn btn-success">Aceptar</button>
+            <br>
+            <button type="button" class="btn btn-warning" (click)="audioPodcast.formularioCerrado=!audioPodcast.formularioCerrado">Cancelar</button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+</div>
